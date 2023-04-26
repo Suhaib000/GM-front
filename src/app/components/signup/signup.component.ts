@@ -37,7 +37,8 @@ export class SignupComponent {
     this.user.profile.usertype=this.loginForm.value.usertype
     this.user.profile.about_you=this.loginForm.value.about_you
     console.log(this.user)
-    this.api.loginUser(this.user).subscribe((response)=>{
+    // this.api.loginUser(this.user).subscribe((response)=>{
+      this.api.loginUser(this.user).subscribe((response)=>{
       this.res = response as any;
       console.log(response)
       this.loading = false

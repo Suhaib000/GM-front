@@ -2,23 +2,36 @@ import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders} from '@angular/common/http';
 import {User,User_login} from "src/app/models/user"
 import { Observable } from 'rxjs';
+import axios from 'axios';
+
+// axies 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
+  private apiUrl = 'http://suhaibali.pythonanywhere.com/api/token/';
   constructor(private http: HttpClient) { }
 
 
   loginUser(user: User){
-    // return this.http.post('http://suhaibali.pythonanywhere.com/users/', user)
      return this.http.post('http://suhaibali.pythonanywhere.com/users/', user)
   }
 
   getUser(username:string){
     return this.http.get(`http://suhaibali.pythonanywhere.com/users/filter_user/?username=${username}`)
   }
+  
+
+  login_ax(data: User_login): Promise<string> {
+    // return this.http.post('http://suhaibali.pythonanywhere.com/api/token/', data);
+    return axios.post(this.apiUrl, data)
+      .then(response => response.data.access_token)
+      .catch(error => {
+        console.error('Error getting token:', error);
+        throw error;
+      });
+      }
   
 
   login(data: User_login): Observable<any> {
