@@ -1,0 +1,8 @@
+{
+    "/": {
+      "target": "http://suhaibali.pythonanywhere.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  
