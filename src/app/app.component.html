@@ -1,0 +1,5 @@
+
+<app-navbar *ngIf="!router.url.includes('login') && !router.url.includes('signup')"></app-navbar>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

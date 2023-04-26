@@ -1,0 +1,179 @@
+<!-- <div class="site-header-wrap site-header-wrap--desktop">
+    <nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="home"><strong> GMDC </strong></a>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="MainPage" class="nav-link">Find Work </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">My Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Messages</a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+        </div>
+        <div class="right">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div> -->
+
+
+
+<div class="container-fluid pt-4 px-2 ;margin=20px" *ngIf="hideDiv">
+    <div id="welcome">
+        <h1 style="font-family: Georgia, serif;">Good Afternoon {{getFullName()}}, <br> Welcome Back...</h1>
+    </div>
+    <hr style="width: 80%;margin: 5px;">
+    <p style="font-family: Century, serif;font-size: 40px!important;margin: 20px;">Jobs for Students...</p>
+    <div class="row">
+
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)=" sort_job('Graphic Design');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/8.webp" alt="Logo">
+            </a>
+            <h2><strong>Graphic Design</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Graphic Design job postings now!</p>
+
+        </div>
+
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Marketing');hideDiv = !hideDiv ">
+                <img width="100%" height='80%' src="assets/img/3.webp" alt="Logo">
+            </a>
+            <h2><strong>Marketing</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Marketing job postings now!</p>
+        </div>
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Gaming Test');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/5.webp" alt="Logo">
+            </a>
+            <h2><strong>Gaming Test</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Gaming Test job postings now!</p>
+        </div>
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Social Media Management');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/social.avif" alt="Logo">
+            </a>
+            <h2><strong>Social Media Management</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Social Media Management job postings now!
+            </p>
+        </div>
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Video Creation');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/video.jpg" alt="Logo">
+            </a>
+            <h2><strong>Video Creation</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Video Creation job postings now!</p>
+        </div>
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Tutoring');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/Tutoring.jpg" alt="Logo">
+            </a>
+            <h2><strong>Tutoring</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Tutoring job postings now!</p>
+        </div>
+
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Researching Topics');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/Researching.jpg" alt="Logo" style="margin-top: 50px;">
+            </a>
+            <h2><strong>Researching Topics</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Researching Topics job postings now!</p>
+        </div>
+        <div class="col-3" style="margin: 50px;">
+            <a href="MainPage" (click)="sort_job('Product Testers');hideDiv = !hideDiv">
+                <img width="100%" height='80%' src="assets/img/24.jpeg" alt="Logo" style="margin-top: 50px;">
+            </a>
+            <h2><strong>Product Testers</strong></h2>
+            <p style="font-family: Georgia, serif;">Get access to the latest Product Testers job postings now!</p>
+        </div>
+    </div>
+
+
+</div>
+<div class="container-fluid pt-4 px-2" *ngIf="!hideDiv">
+    <a href="MainPage">
+        <button
+            style="border-radius: 20px;width: 14%;height:40px;margin-top:100px;background-color: #63AEB3;text-align:center;margin-bottom:10px;">
+            Find Other jobs</button>
+    </a>
+    <div id="welcome1">
+
+        <h3><strong>Projects you might like...</strong></h3>
+        <div *ngFor="let job of filteredJob">
+            <hr>
+            <h4 style="margin-left: 20px;color: #050505;">{{ job.jop_name }}</h4>
+            <div class="row">
+                <div style="margin-left: 20px;" class="col-md-7">{{job.job_type}} - {{job.job_pay_type}} - Posted
+                    {{job.created_time}} ago</div>
+            </div>
+            <div class="row">
+                <div style="margin-left: 20px;margin-bottom: 20px;color: #050505;" class="col-md-7">
+                    {{job.jop_discription}}</div>
+                <div style="margin-left: 200px;margin-bottom: 20px;color: #050505;" class="col-md-2">
+                    <!-- <button style="width: 100%;border-radius: 50px;margin-left: 50px;" type="button"
+                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="apply_job(job)">
+                        Apply Job
+                    </button> -->
+
+                    <button style="color: #050505; width: 120%;height:100%;" type="button"
+                        class="btn btn-secondary" data-bs-dismiss="modal" (click)="apply_job(job)">Apply Job</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<!-- <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Post Job</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="px-4 pt-5 my-auto" [formGroup]="myForm" (ngSubmit)="apply_job()">
+                    <p class="text-muted">Submit a Proposal</p>
+
+
+                    <div class="form-floating ">
+                        <textarea type="text" class="form-control" id="floatingInput" placeholder="proposal"
+                            formControlName="proposal" style="height: 90%;"></textarea>
+                        <label for="floatingInput">Cover Letter</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="apply_job()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div> -->

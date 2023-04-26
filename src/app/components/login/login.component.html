@@ -1,0 +1,40 @@
+<div class="container-fluid h-100 bg-white">
+    <div class="row h-100">
+        <div class="col-5">
+            <div class="d-flex py-4 mt-3 justify-content-center">
+                <img width="50" src="assets/img/logo.jpeg" alt="Logo">
+                <a class="navbar-brand" href="home"><h2 class="ms-2 mb-0" id="app-name">GMDC</h2></a>
+                <a class="nav-link m-2" href="signup">SignUp</a>
+
+            </div>
+            <form class="px-4 pt-5 my-auto" [formGroup]="loginForm" (ngSubmit)="login()">
+                <h3>Welcome back!</h3>
+                <p class="text-muted">Please enter your username and password to login.</p>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="username"
+                        formControlName="username">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="password"
+                        formControlName="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <!-- <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingUser_type" name="usertype" placeholder="usertype"
+                        formControlName="usertype" >
+                        <option value="" selected disabled>Select your role</option>
+                        <option value="student">student</option>
+                        <option value="employer">employer</option>
+                    </select>
+                </div> -->
+                <div class="uk-alert uk-alert-danger" *ngIf="isError">Wrong Username or Password</div>
+
+                <button class="orange-button border-0 fs-5 rounded w-100 p-2" type="submit">
+                    Login
+                </button>
+            </form>
+        </div>
+        <div class="col" ><img width="100%" height='120%' src="assets/img/4321.jpeg" alt="Logo" style="margin: 1px;"></div>
+    </div>
+</div>

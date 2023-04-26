@@ -1,0 +1,183 @@
+<!-- <div class="site-header-wrap site-header-wrap--desktop">
+  <nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="home"><strong> GMDC </strong></a>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link">Find Work </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">My Jobs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Messages</a>
+      </li>
+    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+    </div>
+    <div class="right">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div> -->
+
+<div class="container-fluid pt-4 px-2 ">
+
+  <div class="row" style="margin: 50px;">
+    <div class="col-11">
+      <h1 style="margin-top: 50px;  font-family: Georgia, serif;"><strong>Your Dashboard...</strong></h1>
+    </div>
+    <div id="welcome">
+      <div *ngIf="hideDiv">
+        <p style="font-family: Century, serif;font-size: 30px!important;margin: 20px;">Your Projects...</p>
+
+        <!-- <h3 style="margin-top: 20px;"><strong>Your Posting...</strong></h3> -->
+
+
+
+        <div *ngFor="let job of edit_jobs">
+
+          <hr>
+          <a href="MainPageEm" (click)="sort_proposal(job.id);hideDiv = !hideDiv " style="color: black;text-decoration: none;; ">
+
+            <h4 style="margin-left: 20px;">{{ job.jop_name }}</h4>
+            <div class="row">
+              <div style="margin-left: 20px;" class="col-md-6">{{job.job_type}}</div>
+              <div class="col-md-2" style="text-align: center;" >number of applicants</div>
+              <!-- <div class="col-md-2">Item 3</div> -->
+            </div>
+            <div class="row">
+              <div style="margin-left: 20px;margin-bottom: 20px;" class="col-md-6">{{job.job_pay_type}}</div>
+              <div class="col-md-2" style="margin-left: 60px;" >{{ job.proposal_num }}</div>
+              <div  class="col-md-3">Created {{job.created_time}} ago</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+
+      <div class="container-fluid pt-4 px-2" *ngIf="!hideDiv">
+         <a class="navbar-brand" href="MainPageEm">
+          <button style="border-radius: 50px;margin: 10px;" type="button" class="btn btn-primary"
+          data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Back to your main job
+        </button>
+         </a>
+         <hr>
+        <h4>People apply to this job</h4>
+
+        <div *ngFor="let job of applaied_job">
+          <hr>
+            <div class="row"  style="margin: 5px;">
+              <div style="margin-left: 20px;" class="col-md-7">{{job.student_username}}</div>
+              <div class="col-md-3">Applied</div>
+              <!-- <div class="col-md-2">Item 3</div> -->
+            </div>
+            <div class="row"  style="margin: 5px;">
+              <div style="margin-left: 20px;margin-bottom: 20px;" class="col-md-7">{{ job.proposal }}</div>
+              <div class="col-md-3">{{job.created_time}} ago</div>
+              <!-- <div class="col-md-3">item</div> -->
+            </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-1">
+      <button style="width: 170%;border-radius: 50px;margin-left: 50px;height: 20%;font-size: 20px;" type="button" class="btn btn-primary"
+        data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Post Job
+      </button>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Post Job</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- ================================form================================================ -->
+        <form class="px-4 pt-5 my-auto" [formGroup]="myForm" (ngSubmit)="craete_job()">
+          <p class="text-muted">Please enter your Job details.</p>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="jop_name"
+              formControlName="jop_name">
+            <label for="floatingInput">Jop Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="jop_discription"
+              formControlName="jop_discription">
+            <label for="floatingInput">Jop Discription</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingstudent_skills" name="student_skills" placeholder="student_skills"
+              formControlName="student_skills">
+              <option value="" selected disabled>Select Student Skills</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Gaming Test">Gaming Test</option>
+            </select>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingjob_type" name="job_type" placeholder="job_type"
+              formControlName="job_type">
+              <option value="" selected disabled>Select Job Type</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Gaming Test">Gaming Test</option>
+              <option value="Video Creation">Video Creationt</option>
+              <option value="Social Media Management">Social Media Management</option>
+              <option value="Tutoring">Tutoring</option>
+              <option value="Researching Topics">Researching Topics</option>
+              <option value="Product Testers">Product Testers</option>
+            </select>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingjob_pay_type" name="job_pay_type" placeholder="job_pay_type"
+              formControlName="job_pay_type">
+              <option value="" selected disabled>Select Job Pay Type</option>
+              <option value="Hourly">Hourly</option>
+              <option value="Fixed price">Fixed price</option>
+            </select>
+          </div>
+          <!-- 
+          <button class="orange-button border-0 fs-5 rounded w-100 p-2" type="submit">
+            Submit
+          </button> -->
+        </form>
+        <!-- ========================================================================= -->
+
+      </div>
+      <div class="modal-footer">
+
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="craete_job()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

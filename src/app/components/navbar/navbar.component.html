@@ -1,0 +1,30 @@
+<div class="site-header-wrap site-header-wrap--desktop">
+    <nav class="navbar navbar-expand-md">
+        <a class="navbar-brand" href="home"><strong> GMDC </strong></a>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Messages</a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+        </div>
+        <div class="right">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a>{{getFullName() }}</a>
+                </li>
+                <!-- <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav"> -->
+                        <li class="nav-item active"><a (click)="logOut()"  href="login">LogOut</a>
+                        </li>
+                    <!-- </ul>
+                </div> -->
+            </ul>
+        </div>
+    </nav>
+</div>
