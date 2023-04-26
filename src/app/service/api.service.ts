@@ -15,11 +15,11 @@ export class ApiService {
 
 
   loginUser(user: User){
-     return this.http.post('http://suhaibali.pythonanywhere.com/users/', user)
+     return this.http.post('https://suhaibali.pythonanywhere.com/users/', user)
   }
 
   getUser(username:string){
-    return this.http.get(`http://suhaibali.pythonanywhere.com/users/filter_user/?username=${username}`)
+    return this.http.get(`https://suhaibali.pythonanywhere.com/users/filter_user/?username=${username}`)
   }
   
 
@@ -39,31 +39,31 @@ export class ApiService {
   }
   
   user_info(id: any){
-    return this.http.get(`http://suhaibali.pythonanywhere.com/users/${id}/`)
+    return this.http.get(`https://suhaibali.pythonanywhere.com/users/${id}/`)
   }
 
   create_job(data:any) : Observable<any> {
-    return this.http.post('http://suhaibali.pythonanywhere.com/postjob/', data=data)
+    return this.http.post('https://suhaibali.pythonanywhere.com/postjob/', data=data)
   }
   get_job_by_userId(id:any): Observable<any> {
-    return this.http.get(`http://suhaibali.pythonanywhere.com/postjob/user/${id}/`)
+    return this.http.get(`https://suhaibali.pythonanywhere.com/postjob/user/${id}/`)
   }
 
   get_all_job(): Observable<any> {
-    return this.http.get(`http://suhaibali.pythonanywhere.com/postjob/`)
+    return this.http.get(`https://suhaibali.pythonanywhere.com/postjob/`)
   }
 
 
   get_all_appliedjob(): Observable<any> {
-    return this.http.get('http://suhaibali.pythonanywhere.com/applyjob/')
+    return this.http.get('https://suhaibali.pythonanywhere.com/applyjob/')
   }
 
   create_apply_job(data:any) : Observable<any> {
-    return this.http.post('http://suhaibali.pythonanywhere.com/applyjob/', data=data)
+    return this.http.post('https://suhaibali.pythonanywhere.com/applyjob/', data=data)
   }
 
   get_filtered_appliedjob(id:any): Observable<any> {
-    return this.http.get(`http://suhaibali.pythonanywhere.com/applyjob/job/${id}/`)
+    return this.http.get(`https://suhaibali.pythonanywhere.com/applyjob/job/${id}/`)
     
   }
 
