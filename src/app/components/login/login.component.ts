@@ -32,71 +32,25 @@ export class LoginComponent {
     });}
 
 
-    // login(){
-    //   this.loading = true;
-    //   this.user = this.loginForm.getRawValue();
-    //   this.isError = false;
-
-    //   console.log(this.user)
-    //   this.api.login(this.user).subscribe(
-    //     (res: LoginResponseInterface) => {
-    //       this.cookiesService.set("access", res.access);
-    //       this.cookiesService.set("refresh", res.refresh);
-    //       this.cookiesService.set("username", this.loginForm.value.username);
-
-    //       this.api.getUser(this.loginForm.value.username).subscribe(
-    //     (user_res: any) => {
-    //       console.log('user_info',user_res)
-    //       this.user_type = user_res[0].profile.usertype
-    //       console.log('user_res[0].profile.usertype',this.user_type)
-
-    //       this.cookiesService.set("id", user_res[0].id);
-        
-    //       if(this.user_type=='student'){
-    //         console.log('user_type SS',this.user_type)
-    //         this.router.navigate(['/MainPage']).then();
-    //       }
-    //       else{
-    //         console.log('user_type EEE',this.user_type)
-
-    //         this.router.navigate(['/MainPageEm']).then();
-    //       }
-
-    //     }
-          
-          
-    //       )
-
-          
-    //       console.log('trewe====>',this.cookiesService.get("id"))
-
-    //     }, (err:any)=>{
-    //       console.log(err);
-    //       this.isError = true;
-    //     }
-    //   )
-    
-    // }
-
-
     login(){
       this.loading = true;
+      this.user = this.loginForm.getRawValue();
       this.isError = false;
-      console.log(this.loginForm.getRawValue())
-      axios.post('http://suhaibali.pythonanywhere.com/api/token/', this.loginForm.getRawValue())
-        .then(token => {
-          console.log('Token:', token);
-          this.cookiesService.set("access", token.data.access);
-          this.cookiesService.set("refresh", token.data.refresh);
+
+      console.log(this.user)
+      this.api.login(this.user).subscribe(
+        (res: LoginResponseInterface) => {
+          this.cookiesService.set("access", res.access);
+          this.cookiesService.set("refresh", res.refresh);
           this.cookiesService.set("username", this.loginForm.value.username);
 
-      axios.get(`http://suhaibali.pythonanywhere.com/users/filter_user/?username=${this.loginForm.value.username}`)
-      .then(response => {
-        console.log('response get user',response.data[0].profile.usertype)
-        this.user_type = response.data[0].profile.usertype
+          this.api.getUser(this.loginForm.value.username).subscribe(
+        (user_res: any) => {
+          console.log('user_info',user_res)
+          this.user_type = user_res[0].profile.usertype
           console.log('user_res[0].profile.usertype',this.user_type)
 
-          this.cookiesService.set("id", response.data[0].id);
+          this.cookiesService.set("id", user_res[0].id);
         
           if(this.user_type=='student'){
             console.log('user_type SS',this.user_type)
@@ -107,21 +61,67 @@ export class LoginComponent {
 
             this.router.navigate(['/MainPageEm']).then();
           }
-      
-      })
-      
-      .catch(error => {
-        console.error('Error getting token:', error);
-        this.isError = true;
-      });
 
+        }
+          
+          
+          )
 
-        })
-        .catch(error => {
-          console.error('Error getting token:', error);
+          
+          console.log('trewe====>',this.cookiesService.get("id"))
+
+        }, (err:any)=>{
+          console.log(err);
           this.isError = true;
-        });
+        }
+      )
+    
     }
+
+
+    // login(){
+    //   this.loading = true;
+    //   this.isError = false;
+    //   console.log(this.loginForm.getRawValue())
+    //   axios.post('http://suhaibali.pythonanywhere.com/api/token/', this.loginForm.getRawValue())
+    //     .then(token => {
+    //       console.log('Token:', token);
+    //       this.cookiesService.set("access", token.data.access);
+    //       this.cookiesService.set("refresh", token.data.refresh);
+    //       this.cookiesService.set("username", this.loginForm.value.username);
+
+    //   axios.get(`http://suhaibali.pythonanywhere.com/users/filter_user/?username=${this.loginForm.value.username}`)
+    //   .then(response => {
+    //     console.log('response get user',response.data[0].profile.usertype)
+    //     this.user_type = response.data[0].profile.usertype
+    //       console.log('user_res[0].profile.usertype',this.user_type)
+
+    //       this.cookiesService.set("id", response.data[0].id);
+        
+    //       if(this.user_type=='student'){
+    //         console.log('user_type SS',this.user_type)
+    //         this.router.navigate(['/MainPage']).then();
+    //       }
+    //       else{
+    //         console.log('user_type EEE',this.user_type)
+
+    //         this.router.navigate(['/MainPageEm']).then();
+    //       }
+      
+    //   })
+      
+    //   .catch(error => {
+    //     console.error('Error getting token:', error);
+    //     this.isError = true;
+    //   });
+
+
+    //     })
+    //     .catch(error => {
+    //       console.error('Error getting token:', error);
+    //       this.isError = true;
+    //     });
+    // }
 
     
 }

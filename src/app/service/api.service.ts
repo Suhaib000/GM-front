@@ -11,20 +11,20 @@ import axios from 'axios';
 })
 export class ApiService {
   private apiUrl = 'https://suhaibali.pythonanywhere.com/api/token/';
-  constructor(private https: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   loginUser(user: User){
-     return this.https.post('https://suhaibali.pythonanywhere.com/users/', user)
+     return this.http.post('http://suhaibali.pythonanywhere.com/users/', user)
   }
 
   getUser(username:string){
-    return this.https.get(`https://suhaibali.pythonanywhere.com/users/filter_user/?username=${username}`)
+    return this.http.get(`http://suhaibali.pythonanywhere.com/users/filter_user/?username=${username}`)
   }
   
 
   login_ax(data: User_login): Promise<string> {
-    // return this.http.post('https://suhaibali.pythonanywhere.com/api/token/', data);
+    // return this.http.post('http://suhaibali.pythonanywhere.com/api/token/', data);
     return axios.post(this.apiUrl, data)
       .then(response => response.data.access_token)
       .catch(error => {
@@ -35,35 +35,35 @@ export class ApiService {
   
 
   login(data: User_login): Observable<any> {
-    return this.https.post('https://suhaibali.pythonanywhere.com/api/token/', data);
+    return this.http.post(this.apiUrl, data);
   }
   
   user_info(id: any){
-    return this.https.get(`https://suhaibali.pythonanywhere.com/users/${id}/`)
+    return this.http.get(`http://suhaibali.pythonanywhere.com/users/${id}/`)
   }
 
   create_job(data:any) : Observable<any> {
-    return this.https.post('https://suhaibali.pythonanywhere.com/postjob/', data=data)
+    return this.http.post('http://suhaibali.pythonanywhere.com/postjob/', data=data)
   }
   get_job_by_userId(id:any): Observable<any> {
-    return this.https.get(`https://suhaibali.pythonanywhere.com/postjob/user/${id}/`)
+    return this.http.get(`http://suhaibali.pythonanywhere.com/postjob/user/${id}/`)
   }
 
   get_all_job(): Observable<any> {
-    return this.https.get(`https://suhaibali.pythonanywhere.com/postjob/`)
+    return this.http.get(`http://suhaibali.pythonanywhere.com/postjob/`)
   }
 
 
   get_all_appliedjob(): Observable<any> {
-    return this.https.get('https://suhaibali.pythonanywhere.com/applyjob/')
+    return this.http.get('http://suhaibali.pythonanywhere.com/applyjob/')
   }
 
   create_apply_job(data:any) : Observable<any> {
-    return this.https.post('https://suhaibali.pythonanywhere.com/applyjob/', data=data)
+    return this.http.post('http://suhaibali.pythonanywhere.com/applyjob/', data=data)
   }
 
   get_filtered_appliedjob(id:any): Observable<any> {
-    return this.https.get(`https://suhaibali.pythonanywhere.com/applyjob/job/${id}/`)
+    return this.http.get(`http://suhaibali.pythonanywhere.com/applyjob/job/${id}/`)
     
   }
 
