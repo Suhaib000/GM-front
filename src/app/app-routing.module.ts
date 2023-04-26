@@ -12,8 +12,8 @@ const routes:Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'signup', component: SignupComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'MainPage', component: MainPageComponent, canActivate: [AuthGuard]},
-  {path: 'MainPageEm', component: MainPageEmComponent, canActivate: [AuthGuard]},
+  {path: 'MainPage', component: MainPageComponent},
+  {path: 'MainPageEm', component: MainPageEmComponent},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
